@@ -7,10 +7,12 @@
   "type": "module",
   "main": "mysql2.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./ui/app.js"
   },
   "dependencies": {
     "dotenv": "^17.2.3",
-    "mysql2": "^3.16.0"
+    "mysql2": "^3.16.0",
+    "readline-sync": "^1.4.10"
   }
 }

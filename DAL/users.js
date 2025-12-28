@@ -13,7 +13,7 @@ async function getAll() {
 
 async function insertOne(data = {}) {
     try {
-        const [rows] = await pool.execute(`insert into users (username) values(?)`, [data.username])
+        const [rows] = await pool.execute(`insert into users (user_name) values(?)`, [data.username])
         if (rows.affectedRows === 1) {
             return { insertId: rows.insertId }
         }
@@ -25,7 +25,7 @@ async function insertOne(data = {}) {
 
 async function findById(id) {
     try {
-        const [res] = await pool.execute(`select * from users where id like ?` [id])
+        const res = await pool.execute(`select * from users where id like ?`, [id])       
         return res[0]
     } catch (error) {
         console.error({ error });
@@ -34,7 +34,7 @@ async function findById(id) {
 
 async function deleteById(id) {
     try {
-        const [res] = await pool.execute(`delete from users where id = ?` [id])
+        const [res] = await pool.execute(`delete from users where id = ?`, [id])
         return res
     } catch (error) {
         console.error({ error });
