@@ -1,7 +1,7 @@
 import { question } from "readline-sync"
-import { deleteById, findById, getAll, insertOne } from "../DAL/users.js";
+import { deleteById, findById, getAll, insertOne, updateUsernameById } from "../DAL/users.js";
 
-const menu = ["Get all users", "Insert user", "Search user by id", "Delete user by id", "Exit"]
+const menu = ["Get all users", "Insert user", "Update name for user by id", "Search user by id", "Delete user by id", "Exit"]
 
 async function app() {
     let choice = 1  
@@ -19,15 +19,20 @@ async function app() {
                 console.log(await insertOne({username: username}));
                 break;
             case 3:
+                const userid_to_update = question(`\nid: `)
+                const new_username = question(`\nnew name: `)
+                console.log(await updateUsernameById(userid_to_update, new_username));
+                break;
+            case 4:
                 const id_to_search = question(`\nid: `)
                 console.log(await findById(id_to_search));
                 break;
-            case 4:
+            case 5:
                 const id_to_delete = question(`\nid: `)
                 console.log(await deleteById(id_to_delete));
                 break;
-            case 5:
-                return 
+            case 6:
+                return
         }
     }
 }
