@@ -1,0 +1,27 @@
+version: "3.9"
+
+services:
+  mysql:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass123
+    ports:
+      - "3306:3306"
+    volumes:
+      - sqljs_db_data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      PMA_USER: root
+      PMA_PASSWORD: rootpass123
+    ports:
+      - "8080:80"
+    depends_on:
+      - mysql 
+volumes:
+  sqljs_db_data:
